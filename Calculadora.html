@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular puntaje</title>
+</head>
+<body>
+    <h1>Calculadora de puntos</h1>
+    <form class="box" method="post" enctype="multipart/form-data">
+        <label for="opciones">Elige una opción:</label>
+            <select id="opciones" onchange="guardarOpcion()"><!--Guarda en variables JS los jugadores-->
+                <option value="1">Jugador 1</option>
+                <option value="2">Jugador 2</option>
+                <option value="3">Jugador 3</option>
+                <option value="4">Jugador 4</option>
+                <option value="5">Jugador 5</option>
+            </select>
+        <input class="botons" type="button" value="Regresar al inicio"onclick="window.location.href='index.html'">
+        <!--Redirecciona al inicio-->
+    </form>
+</body>
+</html>
+
+<select id="Tablero" onchange="opcionTablero()"><!--Guarda en variables JS los jugadores-->
+    <option value="1">Tablero de verano</option>
+    <option value="2">Tablero de invierno</option>
