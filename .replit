@@ -10,5 +10,9 @@ author = 43405510
 mode = "sequential"
 
 [[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Serve HTML"
+
+[[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python3 -m http.server 5000"
