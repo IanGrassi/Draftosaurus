@@ -7,11 +7,13 @@
   <title>Version</title>
 </head>
 <body>
+  
     <form>
       <section class="seleccion">
         <h1>Configuracion de la partida</h1>
         <label>Cantidad de Jugadores</label>
-        <br>
+<br>
+        
         <select id="cantidadJugadores" onchange="guardarOpcion()"><!--Guarda en variables JS la cantidad de  jugadores-->
           <option value="" disabled selected onchange="guardarJugadores()">Seleccionar la cantidad de jugadores</option>
           <option value="1">2 👤👤</option>
@@ -19,11 +21,12 @@
           <option value="3">4 👤👤👤👤</option>
           <option value="4">5 👤👤👤👤👤</option>
         </select>
-        <br><br>
+<br><br>
+        
         <label>Eliga la version del Tablero:</label>
         <br>
         <input class="botonV" type="button" value="Tablero de Verano ☀️" onclick="mapaVersion()">
-        <input class="botonI" type="button" value="Tablero de Invierno 🌨️" onclick="mapaVersion()">
+        <input class="botonI" type="button" value="Tablero de Invierno ❄️" onclick="mapaVersion()">
         <br>
         <br>
         <input class="botons" type="button" value="Regresar al inicio"onclick="window.location.href='../index.html'">
