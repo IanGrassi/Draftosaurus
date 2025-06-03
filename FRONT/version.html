@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styVersion.css">
+  <link rel="stylesheet" href="ARCHIVOS/CSS/styVersion.css">
   <title>Version</title>
 </head>
 <body>
     <form>
-      <section class="Seleccion">
+      <section class="seleccion">
         <h1>Configuracion de la partida</h1>
         <label>Cantidad de Jugadores</label>
         <br>
-        
         <select id="cantidadJugadores" onchange="guardarOpcion()"><!--Guarda en variables JS la cantidad de  jugadores-->
           <option value="" disabled selected onchange="guardarJugadores()">Seleccionar la cantidad de jugadores</option>
           <option value="1">2 👤👤</option>
@@ -24,8 +22,8 @@
         <br><br>
         <label>Eliga la version del Tablero:</label>
         <br>
-        <input class="boton" type="button" value="Tablero de Verano ☀️" onclick="mapaVersion()">
-        <input class="boton" type="button" value="Tablero de Invierno 🌨️" onclick="mapaVersion()">
+        <input class="botonV" type="button" value="Tablero de Verano ☀️" onclick="mapaVersion()">
+        <input class="botonI" type="button" value="Tablero de Invierno 🌨️" onclick="mapaVersion()">
         <br>
         <br>
         <input class="botons" type="button" value="Regresar al inicio"onclick="window.location.href='../index.html'">
