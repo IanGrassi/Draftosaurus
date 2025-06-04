@@ -30,6 +30,7 @@ select {
 }
 
 .botonV, .botonI, .botons {
+    pointer-events: cursor;
     width: 260px;
     padding: 20px 0;
     margin: 10px;
