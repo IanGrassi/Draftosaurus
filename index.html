@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ARCHIVOS/CSS/style_index.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pantalla de inicio</title>
-</head>   
 
+    <link rel="stylesheet" href="ARCHIVOS/CSS/style_index.css" />
 
-<style>
-    body {
-        background-image: url("ARCHIVOS/RESOURCES/DraftoFondo.jpg"); 
-        background-size: cover;
-        background-repeat: no-repeat; 
-        background-attachment: fixed; 
-        background-position: center;
-    }
-</style>
+    <style>
+        body {
+            background-image: url("ARCHIVOS/RESOURCES/DraftoFondo.jpg"); 
+            background-size: cover;
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            background-position: center;
+        }
 
+    
+    </style>
+</head>
+
+    
 <body>
-<form> 
+    
+    <a href="https://es.wikipedia.org/wiki/Brontosaurus" target="_blank">
+      <img class="logo" src="ARCHIVOS/RESOURCES/isotipoWithe.png" alt="LogoBrontoGames"/>
+    </a>
+    
+    <header>
+        
+          <a href="https://www.mercadolibre.com.uy/draftosaurus-juego-de-mesa-familiar/p/MLU20760397" target="_blank">
+              <img class="titulo" src="ARCHIVOS/RESOURCES/Title.png" alt="Draftosaurus Title" />
+          </a>
+       
+    </header>
+
     <section class="form-registrer">
+        <input class="botonsJ" type="button" value="Jugar Draftosaurus🕹️" onclick="window.location.href='FRONT/Registro.html'"/>
+        <input class="botonsC" type="button" value="Calcular puntaje" onclick="window.location.href='FRONT/Calculadora.html'"/>
+    </section>
 
-        <h1><img src="ARCHIVOS/RESOURCES/Title.png" alt="Draftosaurus Title" style="height: 60px; vertical-align: middle; margin-right: 10px;">🦕 Draftosaurus </h1>
-        <h3>👾 BrontoGames studios 🎮</h3>
-
-
-
-        <input class="botonsJ" type="button" value="Jugar Draftosaurus🕹️"onclick="window.location.href='FRONT/Registro.html '"><!--Redirecciona al registro-->
-        <input class="botonsC" type="button" value="Calcular puntaje"onclick="window.location.href='FRONT/Calculadora.html'"><!--Redirecciona a la calculadora-->
-        <br><br>
-
-        </section>
-
-    </form>
-
-
+    
     <div>
-        <label class="copyright">© 2025 Draftosaurus | ® BrontoGames | Todos los derechos reservados </label><!--Copyright, ira abajo en la derecha y un poco translucido-->
+        <label class="copyright">
+            © 2025 Draftosaurus | ® BrontoGames | Todos los derechos reservados
+        </label>
     </div>
-
-</body> 
+</body>
 </html>
