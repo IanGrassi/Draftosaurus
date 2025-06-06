@@ -8,13 +8,18 @@
 </head>  
     <body>
         <h1>Registro</h1>
-        <form action="procesar_registro.php" method="post">
-            
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+        
 
-       
+        <form class="Registro" action="../BACK/procesar_registro.php" method="POST">
+            <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            <br><br>
+            <input class="botonsRegistro" type="submit" value="Registrarse para jugar">
+            <br><br>
+        </form>
+
+        <input class="botonsInicio" type="button" value="Regresar al inicio" onclick="window.location.href='../index.html'">
+
     
-    <input class="botonsRegistro" type="button" value="Registrarse para jugar"onclick="window.location.href='version.html '">
-            <br>
-    <input class="botonsInicio" type="button" value="Regresar al inicio"onclick="window.location.href='../index.html'">
-    </body>
+</body></html>
+
+
