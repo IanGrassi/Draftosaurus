@@ -1,0 +1,11 @@
+.panel{
+    background-color: blue;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    width: 40rem;
+    height: 47rem;
+    justify-content: center;
+    align-items: center;
+    
+}
