@@ -4,47 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../ARCHIVOS/CSS/styVersion.css">
-  <title>Version</title>
+  <title>Configuración de Partida</title>
+  <style>
+    body {
+      background-image: url("../ARCHIVOS/RESOURCES/DraftoFondo.jpg"); 
+      background-size: cover;
+      background-repeat: no-repeat; 
+      background-attachment: fixed; 
+      background-position: center;
+    }
+  </style>
 </head>
 
-  <style>
-      body {
-          background-image: url("../ARCHIVOS/RESOURCES/DraftoFondo.jpg"); 
-          background-size: cover;
-          background-repeat: no-repeat; 
-          background-attachment: fixed; 
-          background-position: center;
-      }
-  </style>
-
-  
 <body>
-  
-    <form>
-      <section class="seleccion">
-        <h1>Configuracion de la partida</h1>
-        <label>Cantidad de Jugadores</label>
-<br>
-        
-        <select id="cantidadJugadores" onchange="guardarOpcion()"><!--Guarda en variables JS la cantidad de  jugadores-->
-          <option value="" disabled selected onchange="guardarJugadores()">Seleccionar la cantidad de jugadores</option>
-          <option value="1">2 👤👤</option>
-          <option value="2">3 👤👤👤</option>
-          <option value="3">4 👤👤👤👤</option>
-          <option value="4">5 👤👤👤👤👤</option>
-        </select>
-<br><br>
-        
-        <label>Eliga la version del Tablero:</label>
-        <br>
-        <input class="botonV" type="button" value="Tablero de Verano ☀️" onclick="mapaVersion()">
-        <input class="botonI" type="button" value="Tablero de Invierno ❄️" onclick="mapaVersion()">
-        <br>
-        <br>
-        <input class="botons" type="button" value="Regresar al inicio"onclick="window.location.href='../index.html'"><!--Redirecciona al juego-->
-        
-      </section>
-    </form>
+  <form>
+    <section class="seleccion">
+      <h1>Configuración de la partida</h1>
+      <label for="cantidadJugadores">Cantidad de Jugadores</label>
+      <br>
+      <select id="cantidadJugadores" onchange="guardarOpcion()">
+        <option value="" disabled selected>Seleccionar la cantidad de jugadores</option>
+        <option value="2">2 👤👤</option>
+        <option value="3">3 👤👤👤</option>
+        <option value="4">4 👤👤👤👤</option>
+        <option value="5">5 👤👤👤👤👤</option>
+      </select>
+
+      <br><br>
+
+      <input class="botonV" type="button" value="JUGAR" id="botonJugar" onclick="mapaVersion()" disabled>
+
+      <br>
+
+      <input class="botons" type="button" value="Regresar al inicio" onclick="window.location.href='../index.html'">
+    </section>
+  </form>
+
+  <script>
+    function guardarOpcion() {
+      const select = document.getElementById("cantidadJugadores");
+      const boton = document.getElementById("botonJugar");
+
+      if (select.value !== "") {
+        boton.disabled = false; // Habilita el botón
+      }
+    }
+
+    function mapaVersion() {
+      const cantidad = document.getElementById("cantidadJugadores").value;
+
+      // Redirige pasando el número de jugadores como parámetro en la URL
+      window.location.href = "Juego.html";
+
+    }
+  </script>
 </body>
 </html>
-
