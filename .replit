@@ -5,3 +5,15 @@ localPort = 5000
 externalPort = 80
 
 [nix]
+
+[workflows]
+runButton = "Start Web Server"
+
+[[workflows.workflow]]
+name = "Start Web Server"
+author = 43405510
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "php -S 0.0.0.0:5000 -t ."
