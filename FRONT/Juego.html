@@ -8,47 +8,54 @@
   <title>Partida</title>
 </head>
 <body>
-    <div class="Juego"></div>
-    <style>
-          body {
-              margin: 0;
-              padding: 0;
-              height: 100vh;
-              position: relative;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              overflow: hidden;
-          }
-          body::before {
-              content: "";
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-image: url("../ARCHIVOS/RESOURCES/FondoTablero.png");
-              background-size: cover;
-              background-repeat: no-repeat;
-              background-position: center;
-              filter: blur(8px) brightness(0.7);
-              z-index: -1;
-          }
+    <div class="tablero"></div>
+    <div class="tab"></div>
 
-          /* Contenedor del tablero */
-          .tablero {
-              background-image: url("../ARCHIVOS/RESOURCES/SpriteTablero.png");
-              background-size: contain;
-              background-repeat: no-repeat;
-              background-position: center;
-              width: 70%;  /* Cambia este valor */
-              height: 70%; /* Cambia este valor */
-              margin: 5%;
-              margin-right: 20%;
-              position: relative;
-              z-index: 1;
-              border: 10px solid rgba(255,255,255,1)
-          }
-    </style>
+    <style>
+        body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 90vh;
+        padding: 2%;
+        box-sizing: border-box;
+}
+
+        .tablero {
+        background-image: url("../ARCHIVOS/RESOURCES/SpriteTablero.png");
+        background-size: cover; 
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 65%; /* Más ancho */
+        height: 79%;
+        border: 7px solid rgba(255, 255, 255, 1);
+}
+
+        .tab {
+        background-color: beige;
+        width: 25%;
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border-radius: 5%;
+}
+
+        body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("../ARCHIVOS/RESOURCES/FondoTablero.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(8px) brightness(0.7);
+        z-index: -1;
+        }
+        </style>
 </body>
 </html>
