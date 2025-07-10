@@ -33,8 +33,8 @@ body::before {
   background-position: center;
 
   /* Controla el tamaño aquí */
-  width: 400px;  /* Cambia este valor */
-  height: 400px; /* Cambia este valor */
+  width: 50vw;  /* Cambia este valor */
+  height: 50vh; /* Cambia este valor */
 
   /* O usa porcentajes */
   /* width: 50vw; */
