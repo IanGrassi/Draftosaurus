@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION["ID"]) ){
+  header("location:Registro.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

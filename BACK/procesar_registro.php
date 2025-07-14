@@ -19,7 +19,7 @@ $id = mysqli_insert_id($conn);
 $_SESSION["ID"] = $id;
 $_SESSION["Nombre"] = $nombre;;
 
- header("Location: ../FRONT/version.html");
+ header("Location: ../FRONT/version.php");
         exit();
 ?>
 
