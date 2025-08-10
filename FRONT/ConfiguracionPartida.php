@@ -10,11 +10,11 @@ if(!isset($_SESSION["ID"]) ){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../ARCHIVOS/CSS/styVersion.css">
+  <link rel="stylesheet" href="../RECURSOS/CSS/style_ConfiguracionPartida.css">
   <title>Configuración de Partida</title>
   <style>
     body {
-      background-image: url("../ARCHIVOS/RESOURCES/fondoInicio.png"); 
+      background-image: url("../RECURSOS/IMAGENES/fondoInicio.png"); 
       background-size: cover;
       background-repeat: no-repeat; 
       background-attachment: fixed; 
@@ -37,13 +37,12 @@ if(!isset($_SESSION["ID"]) ){
         <option value="5">5 👤👤👤👤👤</option>
       </select>
 
-      <br><br>
-
-      <input class="botonV" type="button" value="JUGAR" id="botonJugar" onclick="mapaVersion()" disabled>
-
       <br>
 
-      <input class="botons" type="button" value="Regresar al inicio" onclick="window.location.href='../index.html'">
+      <input class="botonJUEGO" type="button" value="JUGAR" id="botonJugar" onclick="mapaVersion()" disabled>
+
+<br>
+      <input class="botonREGRESAR" type="button" value="Regresar al inicio" onclick="window.location.href='../index.html'">
     </section>
   </form>
 
