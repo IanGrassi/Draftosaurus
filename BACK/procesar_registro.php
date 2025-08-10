@@ -39,7 +39,7 @@ try {
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
             
-            header("Location: ../FRONT/ConfiguracionPartida.php");
+            header("Location: ../index.php");
             exit();
         } else {
             echo "Error al insertar usuario: " . mysqli_stmt_error($stmt);
@@ -58,6 +58,5 @@ try {
         mysqli_close($conn);
     }
 
-    echo "AAAA";
 }
 ?>
