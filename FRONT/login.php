@@ -20,9 +20,9 @@
 
     <form class="Registro" action="../BACK/procesar_login.php" method="POST">
         <h1>Login</h1>
-        <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+        <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre" autocomplete="off" required>
         <br>
-        <input class="controls" type="text" name="password" id="password" placeholder="Contraseña" required>
+        <input class="controls" type="password" name="password" id="password" placeholder="Contraseña" required>
         <br><br>
         <input class="botonsRegistro" type="submit" value="Login para jugar">
         <br><br>

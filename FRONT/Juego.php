@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style_juego.css">
   <title>Partida</title>
   <style>
     body {
@@ -133,6 +134,22 @@
     .dropzone {
       min-height: 70px;
     }
+
+    .BotonRedireccionInicio, .BotonRedireccionCambio {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
   </style>
 </head>
 <body>
@@ -153,6 +170,12 @@
     <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoNaranjaSprite.png" alt="DinoNaranja"></div>
     <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoVerdeSprite.png" alt="DinoVerde"></div>
     <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoVioletaSprite.png" alt="DinoVioleta"></div>
+
+    <br>
+
+    <input class="BotonRedireccionInicio" type="button" value="Regresar" onclick="window.location.href='../index.php'" />
+
+    <input class="BotonRedireccionCambio" type="button" value="Cambiar de turno"/>
   </div>
 
   <script>
