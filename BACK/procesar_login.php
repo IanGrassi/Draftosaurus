@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error = "Contraseña incorrecta";
         }
     } else {
-        $error = "Usuario no encontrado";
+        // Usuario no registrado
+        $error = "Debes registrarte antes de iniciar sesión.";
     }
 
     $stmt->close();

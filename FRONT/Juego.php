@@ -5,20 +5,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="style_juego.css">
+  <link rel="stylesheet" href="../RECURSOS/CSS/style_juego.css">
   <title>Partida</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 90vh;
-      padding: 2%;
-      box-sizing: border-box;
-      overflow: hidden;
-      margin: 0;
-    }
 
+  <style>
     .tablero {
       background-image: url("../RECURSOS/IMAGENES/SpriteTablero.png");
       background-size: cover;
@@ -28,78 +18,6 @@
       height: 79%;
       border: 7px solid rgba(255, 255, 255, 1);
       position: relative;
-    }
-
-    .region {
-      position: absolute;
-      border: 2px dashed rgba(255, 255, 255, 0.3); /* Visual */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .region-top-left {
-      top: 0;
-      left: 0;
-      width: 35%;
-      height: 25%;
-    }
-
-    .region-top-right {
-      top: 0;
-      right: 0;
-      width: 35%;
-      height: 25%;
-    }
-
-    .region-middle-left {
-      top: 25%;
-      left: 0;
-      width: 35%;
-      height: 50%;
-    }
-
-    .region-middle-right {
-      top: 25%;
-      right: 0;
-      width: 35%;
-      height: 50%;
-    }
-
-    .region-bottom-left {
-      bottom: 0;
-      left: 0;
-      width: 35%;
-      height: 25%;
-    }
-
-    .region-bottom-right {
-      bottom: 0;
-      right: 0;
-      width: 35%;
-      height: 25%;
-    }
-
-    .region-center {
-      top: 25%;
-      left: 20%;
-      width: 28%;
-      height: 50%;
-      margin-left: 15%;
-    }
-
-    .tab {
-      background-color: beige;
-      width: 25%;
-      height: 70vh;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 10px;
-      box-sizing: border-box;
-      border-radius: 5%;
     }
 
     body::before {
@@ -116,41 +34,8 @@
       filter: blur(8px) brightness(0.7);
       z-index: -1;
     }
-
-    .draggable {
-      width: 70px;
-      height: 70px;
-      margin: 5px;
-      cursor: grab;
-    }
-
-    .draggable img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-    }
-
-    .dropzone {
-      min-height: 70px;
-    }
-
-    .BotonRedireccionInicio, .BotonRedireccionCambio {
-    background-color: grey;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
   </style>
+
 </head>
 <body>
   <div class="tablero" id="tablero">
@@ -173,12 +58,34 @@
 
     <br>
 
-    <input class="BotonRedireccionInicio" type="button" value="Regresar" onclick="window.location.href='../index.php'" />
+    <input class="BotonRedireccionInicio" type="button" value="Regresar" onclick="window.location.href='../BACK/logout.php'" />
 
     <input class="BotonRedireccionCambio" type="button" value="Cambiar de turno"/>
+
+    <input class="BotonRedireccionObtenerDinos" type="button" value="Obtener dinosauruios"/>
   </div>
 
   <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btnObtener = document.getElementById('btn-obtener-dinos');
+  const dinosContainer = document.getElementById('zona-dinos');
+  const todosDinos = Array.from(dinosContainer.querySelectorAll('.draggable'));
+
+  // Al iniciar ocultamos todos
+  todosDinos.forEach(d => d.style.display = 'none');
+
+  btnObtener.addEventListener('click', () => {
+    // Ocultamos todos antes de mostrar los nuevos
+    todosDinos.forEach(d => d.style.display = 'none');
+
+    // Mezclamos aleatoriamente
+    const seleccionados = [...todosDinos].sort(() => Math.random() - 0.5).slice(0, 6);
+
+    // Mostramos los seleccionados
+    seleccionados.forEach(d => d.style.display = 'inline-block');
+  });
+});
+  
     // Hacer que los elementos se puedan arrastrar
     document.querySelectorAll(".draggable").forEach(item => {
       item.addEventListener("dragstart", e => {
@@ -230,6 +137,7 @@
         }
       });
     });
+
   </script>
 </body>
 </html>

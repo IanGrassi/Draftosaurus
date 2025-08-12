@@ -29,5 +29,11 @@
         <input class="botonsInicio" type="button" value="Regresar al inicio" onclick="window.location.href='../index.php'">
     </form>
     
+<?php if (!empty($error)): ?>
+    <div style="color: red; font-weight: bold;">
+        <?php echo $error; ?>
+    </div>
+<?php endif; ?>
+
 </body>
 </html>
