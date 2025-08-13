@@ -35,7 +35,6 @@
       z-index: -1;
     }
   </style>
-
 </head>
 <body>
   <div class="tablero" id="tablero">
@@ -49,12 +48,9 @@
   </div>
 
   <div class="tab" id="TomaDinosaurios">
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoRojoSprite.png" alt="DinoRojo"></div>
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoAzulSprite.png" alt="DinoAzul"></div>
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoAmarilloSprite.png" alt="DinoAmarillo"></div>
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoNaranjaSprite.png" alt="DinoNaranja"></div>
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoVerdeSprite.png" alt="DinoVerde"></div>
-    <div class="draggable" draggable="true"><img src="../RECURSOS/IMAGENES/DinoVioletaSprite.png" alt="DinoVioleta"></div>
+    <div id="zona-dinos">
+      <!-- Aquí se generarán los dinos -->
+    </div>
 
     <br>
 
@@ -62,43 +58,58 @@
 
     <input class="BotonRedireccionCambio" type="button" value="Cambiar de turno"/>
 
-    <input class="BotonRedireccionObtenerDinos" type="button" value="Obtener dinosauruios"/>
+    <input id="btn-obtener-dinos" class="BotonRedireccionObtenerDinos" type="button" value="Obtener dinosauruios"/>
   </div>
 
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btnObtener = document.getElementById('btn-obtener-dinos');
-  const dinosContainer = document.getElementById('zona-dinos');
-  const todosDinos = Array.from(dinosContainer.querySelectorAll('.draggable'));
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnObtener = document.getElementById('btn-obtener-dinos');
+    const dinosContainer = document.getElementById('zona-dinos');
 
-  // Al iniciar ocultamos todos
-  todosDinos.forEach(d => d.style.display = 'none');
+    const imagenesDinos = [
+      "../RECURSOS/IMAGENES/DinoRojoSprite.png",
+      "../RECURSOS/IMAGENES/DinoAzulSprite.png",
+      "../RECURSOS/IMAGENES/DinoAmarilloSprite.png",
+      "../RECURSOS/IMAGENES/DinoNaranjaSprite.png",
+      "../RECURSOS/IMAGENES/DinoVerdeSprite.png",
+      "../RECURSOS/IMAGENES/DinoVioletaSprite.png"
+    ];
 
-  btnObtener.addEventListener('click', () => {
-    // Ocultamos todos antes de mostrar los nuevos
-    todosDinos.forEach(d => d.style.display = 'none');
-
-    // Mezclamos aleatoriamente
-    const seleccionados = [...todosDinos].sort(() => Math.random() - 0.5).slice(0, 6);
-
-    // Mostramos los seleccionados
-    seleccionados.forEach(d => d.style.display = 'inline-block');
-  });
-});
-  
-    // Hacer que los elementos se puedan arrastrar
-    document.querySelectorAll(".draggable").forEach(item => {
-      item.addEventListener("dragstart", e => {
-        e.dataTransfer.setData("text/html", item.outerHTML);
+    function agregarEventosArrastre(elem) {
+      elem.addEventListener("dragstart", e => {
+        e.dataTransfer.setData("text/html", elem.outerHTML);
         e.dataTransfer.effectAllowed = "move";
-        // Guardar origen para evitar duplicado
-        item.classList.add("drag-source");
+        elem.classList.add("drag-source");
       });
 
-      item.addEventListener("dragend", () => {
-        item.classList.remove("drag-source");
+      elem.addEventListener("dragend", () => {
+        elem.classList.remove("drag-source");
       });
-    });
+    }
+
+    function generarDinos() {
+      dinosContainer.innerHTML = ''; // Limpiar anteriores
+
+      for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * imagenesDinos.length);
+        const imgSrc = imagenesDinos[randomIndex];
+
+        const dinoDiv = document.createElement('div');
+        dinoDiv.classList.add('draggable');
+        dinoDiv.draggable = true;
+
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = "Dino";
+
+        dinoDiv.appendChild(img);
+        dinosContainer.appendChild(dinoDiv);
+
+        agregarEventosArrastre(dinoDiv);
+      }
+    }
+
+    btnObtener.addEventListener('click', generarDinos);
 
     // Hacer que las regiones acepten drops
     document.querySelectorAll(".dropzone").forEach(zone => {
@@ -115,30 +126,20 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         zone.style.backgroundColor = "transparent";
 
-        const data = e.dataTransfer.getData("text/html");
-
-        // Evitar duplicado si ya está en zona
         const source = document.querySelector(".drag-source");
         if (source && source.parentElement !== zone) {
           const clone = source.cloneNode(true);
           clone.classList.remove("drag-source");
           clone.draggable = true;
-
-          // Volver a agregar eventos
-          clone.addEventListener("dragstart", e => {
-            e.dataTransfer.setData("text/html", clone.outerHTML);
-            clone.classList.add("drag-source");
-          });
-          clone.addEventListener("dragend", () => {
-            clone.classList.remove("drag-source");
-          });
-
+          agregarEventosArrastre(clone);
           zone.appendChild(clone);
         }
       });
     });
 
+    // Generar los primeros dinos al cargar
+    generarDinos();
+  });
   </script>
 </body>
 </html>
-
