@@ -5,11 +5,18 @@ ini_set('display_errors', 1);
 session_start();
 
 // Configuración base de datos
+
+$hostname = 'brontogames';
+$username = 'ian';
+$password = 'igrad25utu';
+$database = 'Draftosaurus';
+
+/*
 $servername = "localhost";
 $username   = "root";
 $password   = "";
 $dbname     = "Draftosaurus";
-
+*/
 // Conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
