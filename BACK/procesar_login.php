@@ -18,7 +18,7 @@ $password   = "";
 $dbname     = "Draftosaurus";
 */
 // Conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }

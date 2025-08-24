@@ -15,7 +15,7 @@ $database = 'Draftosaurus';
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
-    $conn = mysqli_connect($hostname, $username, $password);
+    $conn = mysqli_connect($hostname, $username, $password, $database);
     if (!$conn) {
         die('Fallo la conexión inicial: ' . mysqli_connect_error());
     }
