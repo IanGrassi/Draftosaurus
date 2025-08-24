@@ -3,9 +3,15 @@ session_start();
 
 // Configuración de la base de datos
 $hostname = 'localhost';
+$username = 'ian';
+$password = 'igrad25utu';
+$database = 'Draftosaurus';
+
+/*$hostname = 'localhost';
 $username = 'root';
 $password = '';
 $database = 'Draftosaurus';
+*/
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
