@@ -30,14 +30,14 @@ try {
     $password_hash = password_hash($password_raw, PASSWORD_DEFAULT);
     
     // Usar prepared statements para mayor seguridad
-    $stmt = mysqli_prepare($conn, "INSERT INTO Draftosaurus.Usuario (nombre, password) VALUES (?, ?)");
+    $stmt = mysqli_prepare($conn, "INSERT INTO draftosaurus.usuario (nombre, password) VALUES (?, ?)");
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ss", $nombre, $password_hash);
         
         if (mysqli_stmt_execute($stmt)) {
             $id = mysqli_insert_id($conn);
             $_SESSION["ID"] = $id;
-            $_SESSION["Nombre"] = $nombre;
+            $_SESSION["nombre"] = $nombre;
             
             echo "Usuario registrado exitosamente con ID: $id<br>";
             
