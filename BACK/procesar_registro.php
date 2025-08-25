@@ -2,10 +2,10 @@
 session_start();
 
 // Configuración de la base de datos
-$hostname = 'brontogames';
+$hostname = '192.168.1.50';
 $username = 'ian';
 $password = 'igrad25utu';
-$database = 'Draftosaurus';
+$database = 'draftosaurus';
 
 /*$hostname = 'localhost';
 $username = 'root';
