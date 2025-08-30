@@ -11,7 +11,7 @@ $password   = "";
 $dbname     = "draftosaurus";
 */
 
-$hostname = '192.168.1.50';
+$servername = '192.168.1.50';
 $username = 'bd-manager';
 $password = 'mBdi4#32';
 $dbname = 'draftosaurus';
