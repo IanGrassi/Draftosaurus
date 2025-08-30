@@ -11,13 +11,13 @@ $password   = "";
 $dbname     = "draftosaurus";
 */
 
-$servername = "192.168.1.50";
+$hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
 $dbname = "draftosaurus";
 
 // Conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
