@@ -7,7 +7,7 @@ session_start();
 //$password = '';
 //$database = 'Draftosaurus';
 
-$hostname = "192.168.1.50";
+$hostname = "127.0.0.1";
 $username = "bd-manager";
 $password = "mBdi4#32";
 $dbname = "draftosaurus";
