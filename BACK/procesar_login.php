@@ -11,10 +11,10 @@ $password   = "";
 $dbname     = "draftosaurus";
 */
 
-$servername = '192.168.1.50:8080';
-$username = 'bd-manager';
-$password = 'mBdi4#32';
-$dbname = 'draftosaurus';
+$servername = "192.168.1.50";
+$username = "bd-manager";
+$password = "mBdi4#32";
+$dbname = "draftosaurus";
 
 // Conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
