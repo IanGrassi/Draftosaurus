@@ -14,7 +14,7 @@ $dbname     = "draftosaurus";
 $hostname = '192.168.1.50';
 $username = 'bd-manager';
 $password = 'mBdi4#32';
-$database = 'draftosaurus';
+$dbname = 'draftosaurus';
 
 // Conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

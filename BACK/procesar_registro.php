@@ -10,7 +10,7 @@ session_start();
 $hostname = '192.168.1.50';
 $username = 'bd-manager';
 $password = 'mBdi4#32';
-$database = 'draftosaurus';
+$dbname = 'draftosaurus';
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
