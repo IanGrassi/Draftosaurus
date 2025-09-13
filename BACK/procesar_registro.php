@@ -2,10 +2,14 @@
 session_start();
 
 // Configuración de la base de datos
-//$hostname = 'localhost';
-//$username = 'root';
-//$password = '';
-//$database = 'Draftosaurus';
+
+
+/*
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'draftosaurus';
+*/
 
 $hostname = "192.168.1.50";
 $username = "bd-manager";

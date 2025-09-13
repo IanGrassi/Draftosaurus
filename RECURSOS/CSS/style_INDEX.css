@@ -56,7 +56,7 @@ html {
   background-color: #4CAF50; 
   border: none;              
   color: white;
-  padding: 10px 20px;
+  padding: 20px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -96,8 +96,6 @@ html {
   
 }
 
-
-
 .DatosEmpresa{
   display: flex;
   flex-direction: column;
@@ -134,9 +132,6 @@ html {
   font-family: 'Ubuntu', sans-serif;
   border: 1px solid rgba(255, 255, 255, 0.3); /* Borde tenue para dar profundidad */
 }
-
-
-
 
 .MapaUbicacion {
   width: 80%;
@@ -276,4 +271,12 @@ html {
 
     .logoIG:hover {
       transform: scale(1.1); 
+    }
+
+    .isotipo{
+      width: 25%;
+      height: auto;
+      margin-top: 5%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }

@@ -4,7 +4,9 @@ ini_set('display_errors', 1);
 
 session_start();
 
-/* Configuración base de datos
+// Configuración base de datos
+
+/*
 $servername = "localhost";
 $username   = "root";
 $password   = "";
@@ -17,7 +19,7 @@ $password = "mBdi4#32";
 $dbname = "draftosaurus";
 
 // Conexión
-$conn = new mysqli($hostname, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -50,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Usuario no registrado
         $error = "Debes registrarte antes de iniciar sesión.";
     }
-
+    echo $error;
     $stmt->close();
 }
 

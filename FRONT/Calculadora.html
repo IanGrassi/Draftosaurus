@@ -1,23 +1,13 @@
-<?php
-include '../SEGURIDAD/proteccion.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Estilos externos -->
-  <link rel="stylesheet" href="../RECURSOS/CSS/style_juego.css">
+  <link rel="stylesheet" href="../RECURSOS/CSS/style_calculadora.css">
   <!-- Librería de iconos (FontAwesome) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Partida</title>
+  <title>Calculadora</title>
 
   <style>
     /* --- Estilo del tablero --- */
@@ -29,7 +19,6 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
       width: 70%;
       height: 80%;
       border: 7px solid rgba(255, 255, 255, 1);
-      position: relative;
     }
 
     /* Fondo desenfocado con oscurecimiento */
@@ -53,8 +42,6 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
       transform: scale(1.1);
     }
 
-
-
   </style>
 </head>
 
@@ -70,30 +57,27 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
     <div class="region region-center dropzone"></div>
   </div>
 
-
-
   <!-- Zona para tomar dinosaurios y botones de control -->
   <div class="tab" id="TomaDinosaurios">
     <div id="zona-dinos"></div> <!-- Aquí aparecen los dinos disponibles -->
-    <br> 
     
-    <span id="turno-info" style="color:black; margin-left:10px;"> Turno: 1 - <?php echo isset($jugadores[0]) ? htmlspecialchars($jugadores[0]) : 'Jugador 1'; ?></span>
+    <span id="turno-info" style="color:black; margin-left:10px;">Tablero del jugador: 1</span>
 
     <!-- Botón con un icono (ejemplo: tirar dado) -->
-    <button class="Dado" onclick="alert('¡Botón presionado!')">
-      <i class="fa-solid fa-dice"></i>
+    <button class="CalculoF" onclick="alert('¡Botón presionado!')">
+      <label>Calcuar puntaje</label>
+      <i class="fa-solid fa-flag-checkered"></i>
     </button>
 
     <!-- Botón para cambiar de turno -->
     <button class="CambioTurno" id="btn-cambiar-turno">
+      <label>Siguiene jugador</label>
       <i class="fa-solid fa-users"></i>
     </button>
    
-
-
-
-    <!-- Botón para regresar (logout) -->
+   <!-- Botón para regresar (logout) -->
     <button class="Salir"  onclick="window.location.href='../BACK/logout.php'">
+      <label>Volver al inicio</label>
       <i class="fa-solid fa-right-from-bracket"></i>
     </button>
   </div>
@@ -108,12 +92,11 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
     const btnCambiarTurno = document.getElementById("btn-cambiar-turno");
     const turnoInfo = document.getElementById("turno-info");
 
-    const maxJugadores = 5;
+    const maxJugadores = 4;
     let turnoActual = 1;
     let dinoColocado = false;
 
-    // Estructura para tableros de jugadores
-    // Cada jugador tiene un objeto con las regiones del tablero
+    // Tableros de cada jugador: cada jugador tiene un objeto con las regiones
     let tableros = Array.from({ length: maxJugadores }, () => ({
       "region-top-left": [],
       "region-top-right": [],
@@ -124,14 +107,14 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
       "region-center": []
     }));
 
-    // Lista de imágenes de dinosaurios disponibles
-    const imagenesDinos = [
-      "../RECURSOS/IMAGENES/DinoRojoSprite.png",
-      "../RECURSOS/IMAGENES/DinoAzulSprite.png",
-      "../RECURSOS/IMAGENES/DinoAmarilloSprite.png",
-      "../RECURSOS/IMAGENES/DinoNaranjaSprite.png",
-      "../RECURSOS/IMAGENES/DinoVerdeSprite.png",
-      "../RECURSOS/IMAGENES/DinoVioletaSprite.png"
+    // Lista de dinosaurios disponibles (nombre e imagen)
+    const dinos = [
+      { nombre: "T-Rex", img: "DinoRojoSprite.png" },
+      { nombre: "Triceratops", img: "DinoAmarilloSprite.png" },
+      { nombre: "Stegosaurus", img: "DinoVerdeSprite.png" },
+      { nombre: "Velociraptor", img: "DinoVioletaSprite.png" },
+      { nombre: "Brachiosaurus", img: "DinoAzulSprite.png" },
+      { nombre: "Ankylosaurus", img: "DinoNaranjaSprite.png" }
     ];
 
     // Límite de dinosaurios por zona del tablero
@@ -148,49 +131,47 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
     // --- Funciones ---
 
     /**
-     * Agrega eventos de arrastre a un elemento dinosaurio.
-     * Permite arrastrar el dinosaurio y marca el origen.
+     * Agrega eventos de arrastre y eliminación a un dinosaurio.
+     * Permite arrastrar, eliminar con clic derecho y doble toque.
      * @param {HTMLElement} elem - Elemento dinosaurio.
      */
     function agregarEventosArrastre(elem) {
       elem.addEventListener("dragstart", (e) => {
-        if (dinoColocado) {
-          e.preventDefault();
-          return;
-        }
-        e.dataTransfer.setData("text/html", elem.outerHTML);
+        e.dataTransfer.setData("dino-img", elem.querySelector("img").src);
         e.dataTransfer.effectAllowed = "move";
-        elem.classList.add("drag-source");
       });
 
-      elem.addEventListener("dragend", () => {
-        elem.classList.remove("drag-source");
+      // Elimina el dinosaurio con clic derecho
+      elem.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        elem.remove();
+      });
+
+      // Elimina el dinosaurio con doble toque (móvil)
+      let lastTap = 0;
+      elem.addEventListener("touchstart", () => {
+        const currentTime = new Date().getTime();
+        if (currentTime - lastTap < 300) {
+          elem.remove();
+        }
+        lastTap = currentTime;
       });
     }
 
     /**
-     * Genera 6 dinosaurios aleatorios y los muestra en la zona de toma.
-     * Reinicia el estado de dinoColocado.
+     * Genera un set inicial de dinosaurios (uno de cada tipo).
+     * Los muestra en la zona de toma.
      */
     function generarDinos() {
       dinosContainer.innerHTML = "";
-      for (let i = 0; i < 6; i++) {
-        const randomIndex = Math.floor(Math.random() * imagenesDinos.length);
-        const imgSrc = imagenesDinos[randomIndex];
-
+      dinos.forEach((dino) => {
         const dinoDiv = document.createElement("div");
-        dinoDiv.classList.add("draggable");
+        dinoDiv.className = "draggable";
         dinoDiv.draggable = true;
-
-        const img = document.createElement("img");
-        img.src = imgSrc;
-        img.alt = "Dino";
-
-        dinoDiv.appendChild(img);
-        dinosContainer.appendChild(dinoDiv);
-
+        dinoDiv.innerHTML = `<img src="../RECURSOS/IMAGENES/${dino.img}" alt="${dino.nombre}">`;
         agregarEventosArrastre(dinoDiv);
-      }
+        dinosContainer.appendChild(dinoDiv);
+      });
       dinoColocado = false;
     }
 
@@ -217,29 +198,21 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
         zone.innerHTML = "";
         tableros[jugador - 1][id].forEach((src) => {
           const dinoDiv = document.createElement("div");
-          dinoDiv.classList.add("draggable");
+          dinoDiv.className = "draggable";
           dinoDiv.draggable = true;
-
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = "Dino";
-
-          dinoDiv.appendChild(img);
-          zone.appendChild(dinoDiv);
-
+          dinoDiv.innerHTML = `<img src="${src}" alt="Dino">`;
           agregarEventosArrastre(dinoDiv);
+          zone.appendChild(dinoDiv);
         });
       });
     }
 
-    // --- Inicialización de eventos en zonas ---
+    // --- Eventos en zonas ---
     // Permite soltar dinosaurios en las regiones del tablero
     document.querySelectorAll(".dropzone").forEach((zone) => {
       zone.addEventListener("dragover", (e) => {
         e.preventDefault();
-        if (!dinoColocado) {
-          zone.style.backgroundColor = "rgba(255,255,255,0.1)";
-        }
+        zone.style.backgroundColor = "rgba(255,255,255,0.1)";
       });
 
       zone.addEventListener("dragleave", () => {
@@ -250,40 +223,58 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
         e.preventDefault();
         zone.style.backgroundColor = "transparent";
 
-        const source = document.querySelector(".drag-source");
-        if (!source || dinoColocado) return;
-
-        const idZona = zone.classList[1];
-        const imgs = Array.from(zone.querySelectorAll("img"));
-        const nuevoSrc = source.querySelector("img").src;
-
-        // Restricción: solo dinos del mismo tipo en region-top-left
-        if (idZona === "region-top-left" && imgs.length > 0) {
-          if (nuevoSrc !== imgs[0].src) {
-            alert("Solo puedes colocar dinosaurios del mismo tipo en esta zona.");
-            return;
-          }
-        }
-
-        // Restricción: solo dinos diferentes en region-middle-right
-        if (idZona === "region-middle-right") {
-          if (imgs.some((img) => img.src === nuevoSrc)) {
-            alert("Solo puedes colocar dinosaurios diferentes en esta zona.");
-            return;
-          }
-        }
-
-        // Límite por zona
-        const limite = limitePorZona[zone.className] || 99;
-        if (imgs.length >= limite) {
-          alert("Este recinto alcanzó el límite de dinosaurios admitidos");
+        // Límite total de dinosaurios en el tablero
+        const totalDinos = document.querySelectorAll(".dropzone img").length;
+        if (totalDinos >= 12) {
+          alert("El tablero ya cuenta con el límite de 12 dinosaurios");
           return;
         }
 
-        // Coloca el dinosaurio en la zona
-        source.classList.remove("drag-source");
-        zone.appendChild(source);
-        dinoColocado = true;
+        const dinoImg = e.dataTransfer.getData("dino-img");
+        if (dinoImg) {
+          const idZona = zone.className;
+          const limite = limitePorZona[idZona];
+          const cantidadActual = zone.querySelectorAll("img").length;
+
+          if (cantidadActual >= limite) {
+            alert("Este recinto alcanzó el límite de dinosaurios admitidos");
+            return;
+          }
+
+          // Restricción: solo dinos del mismo tipo en region-top-left
+          if (zone.classList.contains("region-top-left")) {
+            const imgs = zone.querySelectorAll("img");
+            if (imgs.length > 0 && imgs[0].src !== dinoImg) {
+              alert("Solo puedes colocar dinosaurios del mismo tipo en esta zona");
+              return;
+            }
+          }
+
+          // Restricción: solo dinos diferentes en region-middle-right
+          if (zone.classList.contains("region-middle-right")) {
+            const imgs = zone.querySelectorAll("img");
+            if (Array.from(imgs).some((img) => img.src === dinoImg)) {
+              alert("Solo puedes colocar dinosaurios diferentes en esta zona");
+              return;
+            }
+          }
+
+          // Crear clon del dinosaurio y agregarlo a la zona
+          const dinoDiv = document.createElement("div");
+          dinoDiv.className = "draggable";
+          dinoDiv.draggable = true;
+          dinoDiv.innerHTML = `<img src="${dinoImg}" alt="Dino">`;
+          agregarEventosArrastre(dinoDiv);
+
+          zone.appendChild(dinoDiv);
+
+          // Si ya se llenó el tablero, guarda y avisa
+          const totalDinosDespues = document.querySelectorAll(".dropzone img").length;
+          if (totalDinosDespues >= 12) {
+            guardarTablero(turnoActual);
+            alert(`Completaste tu tablero jugador ${turnoActual}, sigue con el siguiente jugador.`);
+          }
+        }
       });
     });
 
@@ -293,13 +284,13 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
      */
     btnCambiarTurno.addEventListener("click", () => {
       guardarTablero(turnoActual);
-      turnoActual = (turnoActual % maxJugadores) + 1;
-      turnoInfo.textContent = `Turno: ${turnoActual}`;
+      turnoActual = turnoActual + 1;
+      turnoInfo.textContent = `Tablero del jugador: ${turnoActual}`;
       cargarTablero(turnoActual);
       generarDinos();
     });
 
-    // --- Inicio de partida ---
+    // --- Inicio ---
     generarDinos();
   });
 </script>
@@ -307,3 +298,4 @@ $jugadores = isset($_SESSION['jugadores']) ? $_SESSION['jugadores'] : [];
 
 </body>
 </html>
+
