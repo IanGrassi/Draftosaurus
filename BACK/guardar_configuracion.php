@@ -2,6 +2,8 @@
 include '../SEGURIDAD/proteccion.php';
 session_start();
 
+ini_set('memory_limit', '512M');
+
 // Conexión a la BD
 
 /*
