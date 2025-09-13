@@ -14,11 +14,11 @@ $database = 'draftosaurus';
 $hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
-$dbname = "draftosaurus";
+$database = "draftosaurus";
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
-    $conn = mysqli_connect($hostname, $username, $password);
+    $conn = mysqli_connect($hostname, $username, $password, $database);
     if (!$conn) {
         die('Fallo la conexión inicial: ' . mysqli_connect_error());
     }

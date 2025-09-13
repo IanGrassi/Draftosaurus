@@ -5,7 +5,7 @@ session_start();
 // Conexión a la BD
 
 /*
-$servername = "localhost";
+$hostname = "localhost";
 $username = "root";
 $password = "";
 $database = "draftosaurus";
@@ -14,9 +14,9 @@ $database = "draftosaurus";
 $hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
-$dbname = "draftosaurus";
+$database = "draftosaurus";
 
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
