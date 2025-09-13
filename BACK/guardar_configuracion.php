@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include '../SEGURIDAD/proteccion.php';
 session_start();
 
@@ -41,9 +44,6 @@ if (
             VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        die("Error en prepare: " . $conn->error);
-    }
     
     $stmt->bind_param("sssssi", $player1, $player2, $player3, $player4, $player5, $num_jugadores);
     
