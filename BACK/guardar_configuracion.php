@@ -41,7 +41,7 @@ if (
             VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $player1, $player2, $player3, $player4, $player5, $num_jugadores);
+    $stmt->bind_param($player1, $player2, $player3, $player4, $player5, $num_jugadores);
     
 
     $_SESSION['jugadores'] = [
