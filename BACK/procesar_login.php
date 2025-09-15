@@ -8,9 +8,9 @@ session_start();
 
 /*
 $hostname = "localhost";
-$username   = "root";
-$password   = "";
-$database    = "draftosaurus";
+$username = "root";
+$password = "";
+$database = "draftosaurus";
 */
 
 $hostname = "192.168.1.50";
@@ -19,7 +19,7 @@ $password = "mBdi4#32";
 $database = "draftosaurus";
 
 // Conexión
-$conn = new mysqli($hostname, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }

@@ -1,11 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 include '../SEGURIDAD/proteccion.php';
 session_start();
-
-ini_set('memory_limit', '512M');
 
 // Conexión a la BD
 
@@ -21,7 +16,7 @@ $username = "bd-manager";
 $password = "mBdi4#32";
 $database = "draftosaurus";
 
-$conn = new mysqli($hostname, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
@@ -44,7 +39,6 @@ if (
             VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    
     $stmt->bind_param("sssssi", $player1, $player2, $player3, $player4, $player5, $num_jugadores);
     
 

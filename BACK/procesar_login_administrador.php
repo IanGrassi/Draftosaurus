@@ -3,9 +3,9 @@ session_start();
 
 /*
 $hostname = "localhost";
-$username   = "root";       
-$password   = "";           
-$database   = "draftosaurus";
+$username = "root";
+$password = "";
+$database = "draftosaurus";
 */
 
 $hostname = "192.168.1.50";
@@ -14,7 +14,7 @@ $password = "mBdi4#32";
 $database = "draftosaurus";
 
 // Crear conexión
-$conn = new mysqli($hostname, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Verificar conexión
 if ($conn->connect_error) {

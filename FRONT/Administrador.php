@@ -9,9 +9,9 @@ if (!isset($_SESSION['admin'])) {
 
 /*
 $hostname = "localhost";
-$username   = "root";       
-$password   = "";           
-$database   = "draftosaurus";
+$username = "root";
+$password = "";
+$database = "draftosaurus";
 */
 
 $hostname = "192.168.1.50";
@@ -20,7 +20,7 @@ $password = "mBdi4#32";
 $database = "draftosaurus";
 
 // Conexión directa
-$con = mysqli_connect($hostname, $username, $password, $database);
+$con = mysqli_connect($servername, $username, $password, $database);
 if (!$con) {
     die("Error de conexión: " . mysqli_connect_error());
 }

@@ -3,12 +3,11 @@ session_start();
 
 // Configuración de la base de datos
 
-
 /*
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'draftosaurus';
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "draftosaurus";
 */
 
 $hostname = "192.168.1.50";
@@ -18,7 +17,7 @@ $database = "draftosaurus";
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
-    $conn = mysqli_connect($hostname, $username, $password, $database);
+    $conn = mysqli_connect($hostname, $username, $password);
     if (!$conn) {
         die('Fallo la conexión inicial: ' . mysqli_connect_error());
     }
