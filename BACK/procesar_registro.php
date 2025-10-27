@@ -2,18 +2,22 @@
 session_start();
 
 // Configuración de la base de datos
-
+$hostname = "localhost";
+$username = "user_brontogames";
+$password = "Nr7#Vp6@Lm1!Xq5K";
+$database = "brontogames";
 /*
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "draftosaurus";
+$database = "brontogames";
 */
-
+/*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
-$database = "draftosaurus";
+$database = "brontogames";
+*/
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla

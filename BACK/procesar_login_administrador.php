@@ -1,20 +1,25 @@
 <?php
 session_start();
 
+$hostname = "localhost";
+$username = "user_brontogames";
+$password = "Nr7#Vp6@Lm1!Xq5K";
+$database = "brontogames";
 /*
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "draftosaurus";
+$database = "brontogames";
 */
-
+/*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
-$database = "draftosaurus";
+$database = "brontogames";
+*/
 
 // Crear conexión
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli($hostname, $username, $password, $database);
 
 // Verificar conexión
 if ($conn->connect_error) {

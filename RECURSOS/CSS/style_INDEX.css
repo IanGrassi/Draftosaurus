@@ -2,6 +2,11 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
+p {
+  font-size: 20px;
+}
+
+
 html {
   scroll-behavior: smooth;
 }
@@ -81,7 +86,8 @@ html {
   max-width: 90%;  
   height: auto;
   margin-top: 35%;
- 
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {

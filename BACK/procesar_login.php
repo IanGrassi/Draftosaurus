@@ -5,21 +5,25 @@ ini_set('display_errors', 1);
 session_start();
 
 // Configuración base de datos
-
+$hostname = "localhost";
+$username = "user_brontogames";
+$password = "Nr7#Vp6@Lm1!Xq5K";
+$database = "brontogames";
 /*
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "draftosaurus";
+$database = "brontogames";
 */
-
+/*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
 $password = "mBdi4#32";
-$database = "draftosaurus";
+$database = "brontogames";
+*/
 
 // Conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
