@@ -8,7 +8,7 @@ session_start();
 $hostname = "localhost";
 $username = "user_brontogames";
 $password = "Nr7#Vp6@Lm1!Xq5K";
-$database = "brontogames";
+$database = "bd-brontogames";
 /*
 $hostname = "localhost";
 $username = "root";
