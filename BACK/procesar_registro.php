@@ -2,16 +2,21 @@
 session_start();
 
 // Configuración de la base de datos
+
+/* 
 $hostname = "localhost";
 $username = "user_brontogames";
 $password = "Nr7#Vp6@Lm1!Xq5K";
 $database = "bd-brontogames";
-/*
+*/
+
+
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "brontogames";
-*/
+$database = "bd-brontogames";
+
+
 /*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
@@ -21,7 +26,7 @@ $database = "brontogames";
 
 try {
     // Primero conectar sin especificar la base de datos para poder crearla
-    $conn = mysqli_connect($hostname, $username, $password);
+    $conn = mysqli_connect($hostname, $username, $password, $database);
     if (!$conn) {
         die('Fallo la conexión inicial: ' . mysqli_connect_error());
     }
@@ -36,7 +41,7 @@ try {
     $password_hash = password_hash($password_raw, PASSWORD_DEFAULT);
     
     // Usar prepared statements para mayor seguridad
-    $stmt = mysqli_prepare($conn, "INSERT INTO bd-brontogames.usuario (nombre, password) VALUES (?, ?)");
+    $stmt = mysqli_prepare($conn, "INSERT INTO `bd-brontogames`.usuario (nombre, password) VALUES (?, ?)");
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ss", $nombre, $password_hash);
         
