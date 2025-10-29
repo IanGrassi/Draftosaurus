@@ -31,6 +31,10 @@ if (isset($_GET['eliminar'])) {
     $id = intval($_GET['eliminar']);
     $sql = "DELETE FROM usuario WHERE ID_Usuario = $id";
     mysqli_query($con, $sql);
+    $stmt = mysqli_prepare($con, "DELETE FROM usuario WHERE ID_Usuario = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
     header("Location: Administrador.php");
     exit();
 }
