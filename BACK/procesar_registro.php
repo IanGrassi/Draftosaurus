@@ -36,7 +36,7 @@ try {
     $password_hash = password_hash($password_raw, PASSWORD_DEFAULT);
     
     // Usar prepared statements para mayor seguridad
-    $stmt = mysqli_prepare($conn, "INSERT INTO draftosaurus.usuario (nombre, password) VALUES (?, ?)");
+    $stmt = mysqli_prepare($conn, "INSERT INTO bd-brontogames.usuario (nombre, password) VALUES (?, ?)");
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ss", $nombre, $password_hash);
         
