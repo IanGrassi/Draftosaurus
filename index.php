@@ -20,6 +20,7 @@
   
 <nav class="BarraMenu">
   <img src="RECURSOS/IMAGENES/isotipo.png" alt="Logo" class="titulo" onclick="toggleMenu()" />
+  <b>Bronto Menu</b>
 </nav>
 
 <div class="Menu" id="menuLateral">
