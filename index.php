@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebPruebas</title>
+  <title>Draftosaurus - Brontogames</title>
+  <link rel="icon" type="image/png" href="RECURSOS/IMAGENES/isotipoWhite.png">
   <link rel="stylesheet" href="RECURSOS/CSS/style_INDEX.css">
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
