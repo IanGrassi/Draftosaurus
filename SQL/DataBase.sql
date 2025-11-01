@@ -1,5 +1,5 @@
-CREATE DATABASE bd-brontogames;
-USE bd-brontogames;
+CREATE DATABASE `bd-brontogames`;
+USE `bd-brontogames`;
 
 CREATE TABLE usuario(
     ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,

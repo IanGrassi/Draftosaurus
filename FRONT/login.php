@@ -15,10 +15,11 @@
         }
     </style>
 </head>  
+
 <body>
 
 
-    <form class="Registro" action="../BACK/procesar_login.php" method="POST">
+    <form class="Registro" id="loginForm" method="POST">
         <h1>Login</h1>
         <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre" autocomplete="off" required>
         <br>
@@ -28,6 +29,30 @@
         <br><br>
         <input class="botonsInicio" type="button" value="Regresar al inicio" onclick="window.location.href='../index.php'">
     </form>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('../BACK/procesar_login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
     
 <?php if (!empty($error)): ?>
     <div style="color: red; font-weight: bold;">

@@ -5,16 +5,19 @@ ini_set('display_errors', 1);
 session_start();
 
 // Configuración base de datos
+
 $hostname = "localhost";
 $username = "user_brontogames";
 $password = "Nr7#Vp6@Lm1!Xq5K";
 $database = "bd-brontogames";
+
 /*
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "brontogames";
+$database = "bd-brontogames";
 */
+
 /*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
@@ -46,17 +49,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($pass, $usuario["password"])) {
             $_SESSION["ID"] = $usuario["ID_Usuario"];
             $_SESSION["Nombre"] = $usuario["nombre"];
-
-            header("Location: ../FRONT/ConfiguracionPartida.php");
-            exit();
+            $success = true;
         } else {
             $error = "Contraseña incorrecta";
+            $success = false;
         }
     } else {
         // Usuario no registrado
         $error = "Debes registrarte antes de iniciar sesión.";
+        $success = false;
     }
-    echo $error;
+    
+    // Devolver respuesta JSON
+    header('Content-Type: application/json');
+    if ($success) {
+        echo json_encode(['success' => true, 'redirect' => '../FRONT/ConfiguracionPartida.php']);
+    } else {
+        echo json_encode(['success' => false, 'message' => $error]);
+    }
     $stmt->close();
 }
 
