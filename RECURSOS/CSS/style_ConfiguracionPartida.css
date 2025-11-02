@@ -1,3 +1,5 @@
+body {cursor: url('/RECURSOS/IMAGENES/cursor.png'), auto;}
+
 .seleccion {
   display: flex;
   flex-direction: column;

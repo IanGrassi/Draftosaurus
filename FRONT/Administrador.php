@@ -60,7 +60,7 @@ $result = mysqli_query($con, $sql);
     <title>Administrador</title>
     <style>
         body {
-            background-image: url('../RECURSOS/IMAGENES/WallpaperAdmin.png');
+            background-image: url('../RECURSOS/IMAGENES/fondoAdministrador.png');
             background-size: cover;
             background-repeat: no-repeat; 
             background-attachment: fixed; 
