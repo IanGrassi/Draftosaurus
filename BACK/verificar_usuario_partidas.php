@@ -2,16 +2,19 @@
 session_start();
 
 // Configuración de la base de datos
+
+/*
 $hostname = "localhost";
 $username = "user_brontogames";
 $password = "Nr7#Vp6@Lm1!Xq5K";
 $database = "bd-brontogames";
-/*
+*/ 
+
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "brontogames";
-*/ 
+$database = "bd-brontogames";
+
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
     if ($conn->connect_error) {

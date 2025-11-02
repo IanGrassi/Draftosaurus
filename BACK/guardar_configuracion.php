@@ -4,17 +4,18 @@ session_start();
 
 // Conexión a la BD
 
+/* 
 $hostname = "localhost";
 $username = "user_brontogames";
 $password = "Nr7#Vp6@Lm1!Xq5K";
 $database = "bd-brontogames";
+*/
 
-/* 
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "brontogames";
-*/
+$database = "bd-brontogames";
+
 /*
 $hostname = "192.168.1.50";
 $username = "bd-manager";
