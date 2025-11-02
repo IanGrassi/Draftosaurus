@@ -51,6 +51,10 @@
     <i class="fa-regular fa-book"></i> Registro de partidas 
   </button>
 
+  <button class="BotonRedireccion03" onclick="mostrarNotificacion()">
+    <i class="fa-regular fa-book"></i> Cambiar idioma
+  </button>
+
 </div>
 
 <script>
@@ -66,6 +70,10 @@
       menu.classList.remove('open');
     }
   });
+
+  function mostrarNotificacion() {
+    alert("¡Próximamente disponible en otros idiomas! Estamos trabajando en ello.");
+  }
 </script>
 
 
@@ -152,6 +160,8 @@ Buscamos traer a la vida a nuestros queridos amigos del Triasico, Jurasico y Cre
 <br><br>
 5- Se repiten los pasos sacando 6 dinosaurios nuevos de la bolsa para una segunda ronda.
 <br><br>
+
+
 
 <b>-Restricciones del dado:</b>
 
