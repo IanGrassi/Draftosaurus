@@ -171,7 +171,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function agregarEventosArrastre(elem) {
     elem.addEventListener("dragstart", (e) => {
+      // Si ya se colocó un dino en este turno, no permitir iniciar otro drag
       if (dinoColocado) { e.preventDefault(); return; }
+      // Si el elemento está en el tablero pero NO fue colocado en este turno
+      // por el jugador actual, impedir que se arrastre (no puede moverse)
+      const inDropzone = elem.closest('.dropzone');
+      if (inDropzone) {
+        const placedTurn = parseInt(elem.dataset.placedTurn || '0', 10);
+        const placedBy = parseInt(elem.dataset.placedBy || '0', 10);
+        if (placedTurn !== turnoActual || placedBy !== jugadorActual) {
+          e.preventDefault();
+          return;
+        }
+      }
       e.dataTransfer.setData("text/html", elem.outerHTML);
       e.dataTransfer.effectAllowed = "move";
       elem.classList.add("drag-source");
@@ -183,8 +195,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Click derecho para quitar dinosaurio del tablero y devolverlo a la mano
     elem.addEventListener("contextmenu", (e) => {
       e.preventDefault();
-      // Solo permitir quitar si está en el tablero (no en la zona de mano)
-      if (elem.closest('.dropzone')) {
+      // No permitir quitar si está en la zona de mano
+      if (elem.closest('#zona-dinos')) {
+        // No hacemos nada: no se puede borrar desde la mano
+        return;
+      }
+      // Solo permitir quitar si está en el tablero (dropzone)
+      const dz = elem.closest('.dropzone');
+      if (dz) {
+        // Solo permitir quitar si el dino fue colocado en ESTE turno
+        const placedTurn = parseInt(elem.dataset.placedTurn || '0', 10);
+        const placedBy = parseInt(elem.dataset.placedBy || '0', 10);
+        if (placedTurn !== turnoActual || placedBy !== jugadorActual) {
+          alert('No puedes borrar dinosaurios de turnos anteriores');
+          return;
+        }
+
         const imgSrc = elem.querySelector('img').src;
         const mano = manoPorJugador[jugadorActual - 1];
         if (mano) {
@@ -242,6 +268,8 @@ document.addEventListener("DOMContentLoaded", () => {
         img.src = src;
         img.alt = "Dino";
         dinoDiv.appendChild(img);
+        // Estos dinosaurios vienen de turnos previos: no marcamos placedTurn
+        // para que no sean eliminables por right-click en turnos actuales
         zone.appendChild(dinoDiv);
         agregarEventosArrastre(dinoDiv);
       });
@@ -475,7 +503,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       source.classList.remove("drag-source");
-      zone.appendChild(source);
+  // Marcar el dinosaurio como colocado en este turno por este jugador
+  source.dataset.placedTurn = String(turnoActual);
+  source.dataset.placedBy = String(jugadorActual);
+  zone.appendChild(source);
       dinoColocado = true;
       // Consumir el dinosaurio de la mano del jugador actual
       const idx = parseInt(source.dataset.manoIndex || "-1", 10);

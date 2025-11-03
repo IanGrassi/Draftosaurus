@@ -212,7 +212,12 @@ Buscamos traer a la vida a nuestros queridos amigos del Triasico, Jurasico y Cre
 # Pasar los dinosaurios restantes.<br>
 # Repetir hasta colocar 6 piezas de dinosaurios (Final de la ronda)<br>
 # Hacer una segunda ronda con otros 6 dinosaurios.<br>
-# Contar los puntos y determinar."<br>
+# Contar los puntos y determinar."<br><br>
+
+<b>Aclaraciones finales:</b>
+<br>
+En caso de necesitar quitar una pieza de dinosaurios del recinto en el cual fue clocado se puede realizar un click derecho sobre el mismo para retirarlo y volver a colocarlo en la seccion de piezas disponibles. Esto solo aplica con las piezas de dinosaurios del mismo turno, si en el siguiente turno se desea retirar del tablero una pieza previamente ya colocada en un turno pasado, no sera posible hacerlo.
+
 </p>
 </section>
 

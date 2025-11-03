@@ -129,6 +129,8 @@
 
       elem.addEventListener("contextmenu", (e) => {
         e.preventDefault();
+        // Only allow removing dinos that are on the board (dropzone), not from the hand
+        if (!elem.closest('.dropzone')) return;
         elem.remove();
         // Verificar si se debe recalcular puntajes después de eliminar
         setTimeout(() => {
@@ -143,6 +145,8 @@
       elem.addEventListener("touchstart", () => {
         const currentTime = new Date().getTime();
         if (currentTime - lastTap < 300) {
+          // Only allow removing dinos on board (dropzone)
+          if (!elem.closest('.dropzone')) return;
           elem.remove();
           // Verificar si se debe recalcular puntajes después de eliminar
           setTimeout(() => {
